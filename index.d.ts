@@ -1,3 +1,5 @@
+/* tslint:disable:no-default-export interface-name max-classes-per-file */
+
 declare module "react-native-fetch-blob" {
     export const RNFetchBlob: RNFetchBlobStatic;
     export type RNFetchBlob = RNFetchBlobStatic;
@@ -35,15 +37,15 @@ declare module "react-native-fetch-blob" {
     class RNFetchBlobFetchPolyfill {
         constructor(config: RNFetchBlobConfig);
 
-        build: () => (url: string, options: RNFetchBlobConfig) => StatefulPromise<RNFetchBlobFetchRepsonse>;
+        build(): (url: string, options: RNFetchBlobConfig) => StatefulPromise<RNFetchBlobFetchRepsonse>;
     }
 
     interface RNFetchBlobFetchRepsonse {
-        arrayBuffer: () => Promise<any[]>;
-        blob: () => Promise<PolyfillBlob>;
-        json: () => Promise<any>;
-        rawResp: () => Promise<FetchBlobResponse>;
-        text: () => Promise<string>;
+        arrayBuffer(): Promise<any[]>;
+        blob(): Promise<PolyfillBlob>;
+        json(): Promise<any>;
+        rawResp(): Promise<FetchBlobResponse>;
+        text(): Promise<string>;
         bodyUsed: boolean;
         headers: any;
         ok: boolean;
@@ -63,58 +65,58 @@ declare module "react-native-fetch-blob" {
          * get path of response temp file
          * @return {string} File path of temp file.
          */
-        path: () => string | null;
-        type: 'base64' | 'path' | 'utf8';
+        path(): string | null;
+        type: "base64" | "path" | "utf8";
         data: any;
         /**
          * Convert result to javascript RNFetchBlob object.
          * @return {Promise<Blob>} Return a promise resolves Blob object.
          */
-        blob: (contentType: string, sliceSize: number) => Promise<PolyfillBlob>;
+        blob(contentType: string, sliceSize: number): Promise<PolyfillBlob>;
         /**
          * Convert result to text.
          * @return {string} Decoded base64 string.
          */
-        text: () => string | Promise<any>;
+        text(): string | Promise<any>;
         /**
          * Convert result to JSON object.
          * @return {object} Parsed javascript object.
          */
-        json: () => any;
+        json(): any;
         /**
          * Return BASE64 string directly.
          * @return {string} BASE64 string of response body.
          */
-        base64: () => any;
+        base64(): any;
         /**
          * Remove cahced file
          * @return {Promise}
          */
-        flush: () => void;
+        flush(): void;
         respInfo: RNFetchBlobResponseInfo;
-        session: (name: string) => RNFetchBlobSession | null;
+        session(name: string): RNFetchBlobSession | null;
         /**
          * Read file content with given encoding, if the response does not contains
          * a file path, show warning message
          * @param  {String} encode Encode type, should be one of `base64`, `ascrii`, `utf8`.
          */
-        readFile: (encode: Encoding) => Promise<any> | null;
+        readFile(encode: Encoding): Promise<any> | null;
         /**
          * Start read stream from cached file
          * @param  {String} encode Encode type, should be one of `base64`, `ascrii`, `utf8`.
          */
-        readStream: (encode: Encoding) => RNFetchBlobStream | null;
+        readStream(encode: Encoding): RNFetchBlobStream | null;
     }
 
 
     interface PolyfillFileReader extends EventTarget {
         isRNFBPolyFill: boolean;
-        onloadstart: (e: Event) => void;
-        onprogress: (e: Event) => void;
-        onload: (e: Event) => void;
-        onabort: (e: Event) => void;
-        onerror: (e: Event) => void;
-        onloadend: (e: Event) => void;
+        onloadstart(e: Event): void;
+        onprogress(e: Event): void;
+        onload(e: Event): void;
+        onabort(e: Event): void;
+        onerror(e: Event): void;
+        onloadend(e: Event): void;
 
         abort(): void;
         readAsArrayBuffer(b: PolyfillBlob): void;
@@ -149,8 +151,8 @@ declare module "react-native-fetch-blob" {
          * given `mime`. However, the blob creation is asynchronously, to register
          * event `onCreated` is need to ensure the Blob is creadted.
          *
-         * @param {any} data Content of Blob object
-         * @param {any} cType Content type settings of Blob object, `text/plain` by default
+         * @param data Content of Blob object
+         * @param cType Content type settings of Blob object, `text/plain` by default
          * @param {boolean} defer When this argument set to `true`, blob constructor will not invoke blob created event automatically.
          */
         constructor(data: any, cType: any, defer: boolean);
@@ -221,14 +223,14 @@ declare module "react-native-fetch-blob" {
          * @param  {string} method Request method
          * @param  {string} url Request URL
          * @param  {boolean} async Always async
-         * @param  {any} user NOT SUPPORTED
-         * @param  {any} password NOT SUPPORTED
+         * @param  user NOT SUPPORTED
+         * @param  password NOT SUPPORTED
          */
         open(method: string, url: string, async: true, user: any, password: any): void;
 
         /**
          * Invoke this function to send HTTP request, and set body.
-         * @param  {any} body Body in RNfetchblob flavor
+         * @param body Body in RNfetchblob flavor
          */
         send(body: any): void;
 
@@ -242,7 +244,7 @@ declare module "react-native-fetch-blob" {
 
         getAllResponseHeaders(): string | null;
 
-        onreadystatechange: (e: Event) => void;
+        onreadystatechange(e: Event): void;
         readyState: number;
         status: number;
         statusText: string;
@@ -271,13 +273,13 @@ declare module "react-native-fetch-blob" {
     }
 
     interface PolyfillXMLHttpRequestEventTarget extends EventTarget {
-        onabort: (e: Event) => void;
-        onerror: (e: Event) => void;
-        onload: (e: Event) => void;
-        onloadstart: (e: Event) => void;
-        onprogress: (e: Event) => void;
-        ontimeout: (e: Event) => void;
-        onloadend: (e: Event) => void;
+        onabort(e: Event): void;
+        onerror(e: Event): void;
+        onload(e: Event): void;
+        onloadstart(e: Event): void;
+        onprogress(e: Event): void;
+        ontimeout(e: Event): void;
+        onloadend(e: Event): void;
     }
 
     interface Net {
@@ -340,8 +342,8 @@ declare module "react-native-fetch-blob" {
          * Create write stream to a file.
          * @param  {string} path Target path of file stream.
          * @param  {string} encoding Encoding of input data.
-         * @param  {bool} append  A flag represent if data append to existing ones.
-         * @return {Promise<WriteStream>} A promise resolves a `WriteStream` object.
+         * @param  {boolean} append  A flag represent if data append to existing ones.
+         * @return {Promise<{}>} A promise resolves a `WriteStream` object.
          */
         writeStream(path: string, encoding: Encoding, append?: boolean): Promise<RNFetchBlobWriteStream>;
 
@@ -366,7 +368,7 @@ declare module "react-native-fetch-blob" {
         /**
          * Check if file exists and if it is a folder.
          * @param  {string} path Path to check
-         * @return {Promise<bool>}
+         * @return {Promise<boolean>}
          */
         exists(path: string): Promise<boolean>;
 
@@ -434,7 +436,7 @@ declare module "react-native-fetch-blob" {
         onEnd(fn: () => void): void;
     }
 
-    type Encoding = 'utf8' | 'ascii' | 'base64';
+    type Encoding = "utf8" | "ascii" | "base64";
 
     interface IOSApi {
         /**
@@ -645,14 +647,14 @@ declare module "react-native-fetch-blob" {
         state: number;
         headers: any;
         status: number;
-        respType: 'text' | 'blob' | '' | 'json';
-        rnfbEncode: 'path' | 'base64' | 'ascii' | 'utf8';
+        respType: "text" | "blob" | "" | "json";
+        rnfbEncode: "path" | "base64" | "ascii" | "utf8";
     }
 
     interface RNFetchBlobStream {
-        onData: () => void;
-        onError: () => void;
-        onEnd: () => void;
+        onData(): void;
+        onError(): void;
+        onEnd(): void;
     }
 
     interface RNFetchBlobFile {

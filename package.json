@@ -1,0 +1,19 @@
+{
+  "name": "react-native-fetch-blob.d.ts",
+  "version": "1.0.0",
+  "description": "react-native fetch blob declaration file",
+  "main": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MNBuyskih/react-native-fetch-blob.d.ts.git"
+  },
+  "author": "MNB <buyskih@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MNBuyskih/react-native-fetch-blob.d.ts/issues"
+  },
+  "homepage": "https://github.com/MNBuyskih/react-native-fetch-blob.d.ts#readme"
+}
